@@ -1,11 +1,15 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import CompetidorModel from "../models/CompetidorModel";
 import uuid from "react-native-uuid";
+import baseInicial from "../../users.json";
 
-let dbKey = "@fromHook:competidores";
+let dbKey = "@fromHook:base_competidores";
 
 export const getAllCompetidores = async (term: string) => {
   try {
+
+    await initDatabase();
+
     const jsonValue = await AsyncStorage.getItem(dbKey);
     const data = jsonValue ? JSON.parse(jsonValue) : [];
 
@@ -41,7 +45,9 @@ export const addCompetidor = async (comp: CompetidorModel) => {
 
 export const updateCompetidor = async (comp: CompetidorModel) => {
   try {
-    console.log("update previewData: ");
+    console.log("updateCompetidor: " + JSON.stringify(comp));
+
+
     var competidores = await getAllCompetidores("");
     const dbData = competidores ? competidores : [];
     const indexToRemove = dbData.findIndex((item) => item.id === comp.id);
@@ -88,4 +94,12 @@ function getCompetidorFromData(data: any) {
     data?.cidade,
     data?.uf
   );
+}
+
+
+async function initDatabase() {
+  const dbData = await AsyncStorage.getItem(dbKey);
+  if (dbData === null) {
+    await AsyncStorage.setItem(dbKey, JSON.stringify(baseInicial));
+  }
 }

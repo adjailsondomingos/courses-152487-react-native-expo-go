@@ -24,7 +24,7 @@ export const HomeComp = ({ navigation }: Props) => {
   useFocusEffect(
     useCallback(() => {
       setTerm("");
-      handleFectchData(); //função responsavel por carregar os dados.
+      handleFectchData();
     }, [])
   );
 

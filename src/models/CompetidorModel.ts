@@ -10,7 +10,6 @@ export default class CompetidorModel {
   cidade: string;
   uf: string;
 
-
   constructor(
     id: string,
     primeiroNome: string,

@@ -95,8 +95,6 @@ export const CompetidorView = ({ route, navigation }: CompetidorRouterProp) => {
 
   async function handlerRegister(data: CompetidorModel) {
     try {
-      //console.log("Cadastrando: " + JSON.stringify(data));
-
       await addCompetidor(data);
 
       Toast.showSuccess("Cadastro realizado com sucesso");
