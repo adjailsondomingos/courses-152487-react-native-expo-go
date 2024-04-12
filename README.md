@@ -11,3 +11,5 @@ To install the project, follow these steps:
 ## Usage
 
 To run the application, use the following command:
+
+1. npx expo start
